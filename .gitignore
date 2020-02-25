@@ -1,0 +1,12 @@
+
+/specify-gbif-datamodel/target/
+/specify-solr-service/target/
+
+certs/*.crt
+certs/*.key
+*DS_Store
+/project-initdata.yml
+
+
+
+/specify-solr-service/nb-configuration.xml
