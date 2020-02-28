@@ -33,10 +33,10 @@ public class GbifDao implements Serializable {
   }
    
   @Transactional
-  public Logs createLogs(Logs logs, String institution) {
+  public Logs createLogs(Logs logs, boolean isNrm) {
     log.info("createLogs : {}", logs);
 
-    entityManager = getEntityManager(institution);
+    entityManager = getEntityManager(isNrm);
     Logs tmp = logs;
     try {
       entityManager.persist(logs);
@@ -50,10 +50,10 @@ public class GbifDao implements Serializable {
   }
 
   @Transactional
-  public SimpleDwc merge(SimpleDwc entity, String institution) {
+  public SimpleDwc merge(SimpleDwc entity, boolean isNrm) {
     log.info("create(T) : {}", entity);
     
-    entityManager = getEntityManager(institution); 
+    entityManager = getEntityManager(isNrm); 
     SimpleDwc tmp = entity;
 
     try {
@@ -69,7 +69,7 @@ public class GbifDao implements Serializable {
     return tmp;
   }
 
-  private EntityManager getEntityManager(String institution) {
-    return institution.equals("nrm") ? nrmEntityManager : gnmEntityManager;
+  private EntityManager getEntityManager(boolean isNrm) {
+    return isNrm ? nrmEntityManager : gnmEntityManager;
   }
 }
