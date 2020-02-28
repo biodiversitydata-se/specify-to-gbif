@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,17 +24,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "logs")
 @XmlRootElement
 @NamedQueries({
-  @NamedQuery(name = "Logs.findAll", query = "SELECT l FROM Logs l")
-  , @NamedQuery(name = "Logs.findById", query = "SELECT l FROM Logs l WHERE l.id = :id")
-  , @NamedQuery(name = "Logs.findByTimestamp", query = "SELECT l FROM Logs l WHERE l.timestamp = :timestamp")
-  , @NamedQuery(name = "Logs.findByTotalRecords", query = "SELECT l FROM Logs l WHERE l.totalRecords = :totalRecords")})
+  @NamedQuery(name = "Logs.findAll", query = "SELECT l FROM Logs l"),
+  @NamedQuery(name = "Logs.findById", query = "SELECT l FROM Logs l WHERE l.id = :id"),
+  @NamedQuery(name = "Logs.findByTimestamp", query = "SELECT l FROM Logs l WHERE l.timestamp = :timestamp"),
+  @NamedQuery(name = "Logs.findByTotalRecords", query = "SELECT l FROM Logs l WHERE l.totalRecords = :totalRecords")})
 public class Logs implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  
+   
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Basic(optional = false)
-  @NotNull
   @Column(name = "id")
   private Integer id;
   
