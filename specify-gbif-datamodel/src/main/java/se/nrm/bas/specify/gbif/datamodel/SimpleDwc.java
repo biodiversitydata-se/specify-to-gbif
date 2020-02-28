@@ -5,9 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Entity; 
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -34,13 +32,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SimpleDwc implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+//  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Basic(optional = false)
-  @Column(name = "id")
-  private Integer id;
-  
-  
+  @Column(name = "id") 
+  private String id;
+   
   @Size(max = 45)
   @Column(name = "type")
   private String type;
@@ -665,49 +663,61 @@ public class SimpleDwc implements Serializable {
   @Size(max = 255)
   @Column(name = "order")
   private String order;
-  
+   
   @Size(max = 255)
   @Column(name = "family")
   private String family;
+  
   
   @Size(max = 255)
   @Column(name = "genus")
   private String genus;
   
+  
   @Size(max = 255)
   @Column(name = "subgenus")
   private String subgenus;
+  
   @Size(max = 255)
   @Column(name = "specificEpithet")
   private String specificEpithet;
+  
   @Size(max = 255)
   @Column(name = "infraspecificEpithet")
   private String infraspecificEpithet;
+  
   @Size(max = 45)
   @Column(name = "taxonRank")
   private String taxonRank;
+  
   @Size(max = 45)
   @Column(name = "verbatimTaxonRank")
   private String verbatimTaxonRank;
+  
   @Size(max = 45)
   @Column(name = "scientificNameAuthorship")
   private String scientificNameAuthorship;
+  
   @Size(max = 255)
   @Column(name = "vernacularName")
   private String vernacularName;
+  
   @Size(max = 45)
   @Column(name = "nomenclaturalCode")
   private String nomenclaturalCode;
   @Size(max = 45)
   @Column(name = "taxonomicStatus")
   private String taxonomicStatus;
+  
   @Size(max = 45)
   @Column(name = "nomenclaturalStatus")
   private String nomenclaturalStatus;
+  
   @Lob
   @Size(max = 65535)
   @Column(name = "taxonRemarks")
   private String taxonRemarks;
+  
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 128)
@@ -717,20 +727,20 @@ public class SimpleDwc implements Serializable {
   public SimpleDwc() {
   }
 
-  public SimpleDwc(Integer id) {
+  public SimpleDwc(String id) {
     this.id = id;
   }
 
-  public SimpleDwc(Integer id, String guid) {
+  public SimpleDwc(String id, String guid) {
     this.id = id;
     this.guid = guid;
   }
 
-  public Integer getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(String id) {
     this.id = id;
   }
 
