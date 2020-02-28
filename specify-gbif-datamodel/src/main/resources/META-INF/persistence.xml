@@ -9,6 +9,7 @@
     <class>se.nrm.bas.specify.gbif.datamodel.Logs</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
+      <property name="hibernate.globally_quoted_identifiers" value="true" />
       <property name="eclipselink.canonicalmodel.subpackage" value="one"/> 
       <!--<property name="eclipselink.logging.level" value="OFF"/>-->
       <!--      <property name="eclipselink.logging.level.sql" value="FINE"/>
@@ -26,6 +27,7 @@
     <class>se.nrm.bas.specify.gbif.datamodel.Logs</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
+      <property name="hibernate.globally_quoted_identifiers" value="true" />
       <property name="eclipselink.canonicalmodel.subpackage" value="two"/> 
       <!--<property name="eclipselink.logging.level" value="OFF"/>-->
       <!--      <property name="eclipselink.logging.level.sql" value="FINE"/>
