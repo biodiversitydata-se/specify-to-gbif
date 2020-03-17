@@ -32,9 +32,6 @@ public class Util {
   private final String emptySpace = " ";
   private final String querySeparator = ":";
    
-
-  private final String nrm ="nrm";
-  
   private final String collectionCodeKey = "collectionCode";
   private final String modifiedKey = "modified";        
   
