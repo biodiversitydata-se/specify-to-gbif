@@ -1,0 +1,40 @@
+## YAML Template.
+---
+swarm:
+  solr:
+    # path: http://localhost:8983
+    path: https://local-solr.nrm.se/solr/
+
+  datasources:
+    jdbc-drivers:
+      com.mysql:
+        driver-class-name: com.mysql.jdbc.Driver
+        xa-datasource-class-name: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+        driver-module-name: com.mysql
+    data-sources:
+      DinaDS:
+        driver-name: com.mysql
+        jndi-name: java:jboss/datasources/NrmGbifDS
+        connection-url: jdbc:mysql://db:13306/specify_gbif_nrm?autoReconnect=true&useSSL=false
+        user-name: user
+        password: password
+        min-pool-size: 8
+        max-pool-size: 35
+        pool-prefill: true
+        autoReconnect: true
+        failOverReadOnly: false&maxReconnects=10&autoReconnect=true
+        validation-query: 'select 1'
+        max-idle-time: 5
+      GnmDS:
+        driver-name: com.mysql
+        jndi-name: java:jboss/datasources/GnmGbifDS
+        connection-url: jdbc:mysql://db:13306/specify_gbif_gnm?autoReconnect=true&useSSL=false
+        user-name: user
+        password: password
+        min-pool-size: 8
+        max-pool-size: 35
+        pool-prefill: true
+        autoReconnect: true
+        failOverReadOnly: false&maxReconnects=10&autoReconnect=true
+        validation-query: 'select 1'
+        max-idle-time: 5
