@@ -59,6 +59,7 @@ public class JsonConverter {
       objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
       return objectMapper.readValue(array.toString(), new TypeReference<List<SimpleDwc>>(){}); 
     } catch (JsonProcessingException ex) { 
+      log.error(ex.getMessage());
     }
     return null;
   }

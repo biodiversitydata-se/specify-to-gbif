@@ -28,10 +28,9 @@ public class SpecifyService {
   @GET
   @Path("/run") 
   @Produces(MediaType.APPLICATION_JSON)
-  public Response run(@QueryParam("inst") String institution, @QueryParam("collCode") String collectionCode,
+  public Response run(@QueryParam("inst") String institution, @QueryParam("coll") String collectionCode,
           @QueryParam("from") String fromDate, @QueryParam("to") String toDate) { 
-    
-    log.info("run : {}", collectionCode); 
+     
     logic.run(institution, Util.getInstance().buildFilterMap(collectionCode, fromDate, toDate));
      
     return Response.ok(success).build();

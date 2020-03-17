@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+
+  api:
+    image: dina/specify-gbif:v0.1
+    container_name: api
+    restart: always
+    volumes:
+      - ./project-initdata.yml:/usr/src/myapp/project-initdata.yml
+    extra_hosts:
+      - "naturarv.nrm.se:193.10.57.89"
+    networks:
+      - default
+
+networks:
+  default:
+    external:
+      name: proxy_default

@@ -5,7 +5,7 @@
 certs/*.crt
 certs/*.key
 *DS_Store
-/project-initdata.yml
+/project-initdata_local.yml
 
 
 

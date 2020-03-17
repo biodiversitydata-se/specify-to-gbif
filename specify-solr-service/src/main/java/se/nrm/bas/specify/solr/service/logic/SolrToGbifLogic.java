@@ -28,7 +28,7 @@ public class SolrToGbifLogic {
   @Inject 
   private GbifDao dao;
   
-  private final int maxFetchSize = 20; 
+  private final int maxFetchSize = 2000; 
   private final String nrm = "nrm"; 
   private final String nrmCore = "nrm_index";
   private final String gnmCore = "gnm_index";
@@ -40,8 +40,7 @@ public class SolrToGbifLogic {
     boolean isNrm = institution.equals(nrm);
     String searchQuery = Util.getInstance().buildSearchQuery(filters);
     String core = isNrm ? nrmCore : gnmCore; 
-    URIBuilder builder = Util.getInstance().getUriBuilder(properties.getSolrPath(), core, searchQuery);
-     
+    URIBuilder builder = Util.getInstance().getUriBuilder(properties.getSolrPath(), core, searchQuery); 
      
     String result = solr.searchSolrData(builder, 0, maxFetchSize);  
     JsonObject json = JsonConverter.getInstance().buildResponseJson(result);  
