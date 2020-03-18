@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `specify_gbif_nrm` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `specify_gbif_nrm`;
 -- MySQL dump 10.13  Distrib 8.0.19, for macos10.15 (x86_64)
 --
 -- Host: localhost    Database: specify_gbif_nrm
@@ -27,7 +29,7 @@ CREATE TABLE `logs` (
   `timestamp` datetime NOT NULL,
   `totalRecords` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,4 +225,4 @@ CREATE TABLE `simpleDwc` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-28 16:20:23
+-- Dump completed on 2020-03-18  7:15:01
