@@ -56,6 +56,11 @@
       <version>2.10.1</version>
     </dependency>
     
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.10.1</version>
+    </dependency>
     
     <dependency>
       <groupId>io.thorntail</groupId>
@@ -73,7 +78,19 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>${version.mysql}</version>
     </dependency>
+    
+    <dependency>
+      <groupId>javax.json</groupId>
+      <artifactId>javax.json-api</artifactId>
+      <version>1.1.4</version>
+    </dependency>
 
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.json</artifactId>
+      <version>1.1.4</version>
+    </dependency>
+    
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>

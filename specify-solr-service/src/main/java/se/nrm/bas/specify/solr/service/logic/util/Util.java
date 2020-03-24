@@ -102,8 +102,8 @@ public class Util {
     sb.append(solr);
     sb.append(core);
     sb.append(select);
-    try { 
-      queryBuilder = new StringBuilder();
+    queryBuilder = new StringBuilder(); 
+    try {  
       URIBuilder builder = new URIBuilder(new URI(solrPath));
       builder.setPath(sb.toString().trim()); 
       builder.setParameter(q, searchQuery);  
