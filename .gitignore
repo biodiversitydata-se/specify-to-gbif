@@ -10,3 +10,4 @@ certs/*.key
 
 
 /specify-solr-service/nb-configuration.xml
+/specify-solr-service/nbproject/
