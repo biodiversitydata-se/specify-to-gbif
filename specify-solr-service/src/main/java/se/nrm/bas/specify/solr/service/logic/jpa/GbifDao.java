@@ -31,6 +31,11 @@ public class GbifDao implements Serializable {
   
   public GbifDao() { 
   }
+  
+  public GbifDao(EntityManager nrmEntityManager, EntityManager gnEntityManager) {
+    this.nrmEntityManager = nrmEntityManager;
+    this.gnmEntityManager = gnEntityManager;
+  }
    
   @Transactional
   public Logs createLogs(Logs logs, boolean isNrm) {
@@ -38,14 +43,14 @@ public class GbifDao implements Serializable {
 
     entityManager = getEntityManager(isNrm);
     Logs tmp = logs;
-    try {
+    try { 
       entityManager.persist(logs);
       entityManager.flush();
     } catch (ConstraintViolationException e) {
-      log.error(e.getMessage());
+      log.error(e.getMessage()); 
     } catch (Exception e) {
-      log.error(e.getMessage());
-    }
+      log.error(e.getMessage()); 
+    } 
     return tmp;
   }
 
