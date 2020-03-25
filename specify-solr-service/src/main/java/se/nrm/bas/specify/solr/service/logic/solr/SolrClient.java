@@ -2,8 +2,7 @@ package se.nrm.bas.specify.solr.service.logic.solr;
 
 import java.io.IOException;
 import java.io.InputStream;  
-import java.net.URISyntaxException; 
-import javax.annotation.PostConstruct; 
+import java.net.URISyntaxException;  
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
@@ -32,15 +31,12 @@ public class SolrClient {
 
   private final String startKey = "start";
   private final String rowsKey = "rows";
-
-  @PostConstruct
-  public void init() {
-    client = HttpClients.createDefault();
-  }
-
+ 
   public String searchSolrData(URIBuilder builder, int start, int maxFetchSize) {
     log.info("getData: start = {}", start);
 
+    client = HttpClients.createDefault();
+    
     builder.setParameter(startKey, String.valueOf(start));
     builder.setParameter(rowsKey, String.valueOf(maxFetchSize));
 
