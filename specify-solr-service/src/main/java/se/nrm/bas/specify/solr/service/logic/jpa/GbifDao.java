@@ -47,7 +47,7 @@ public class GbifDao implements Serializable {
       entityManager.persist(logs);
       entityManager.flush();
     } catch (ConstraintViolationException e) {
-      log.error(e.getMessage()); 
+      log.error(e.getMessage());  
     } catch (Exception e) {
       log.error(e.getMessage()); 
     } 
@@ -67,6 +67,7 @@ public class GbifDao implements Serializable {
       entityManager.flush();                              // this one used for throwing OptimisticLockException if method called with web service 
     } catch (OptimisticLockException | ConstraintViolationException e) {
       log.error(e.getMessage());
+      System.out.println("throw...");
       throw e;
     } 
     return tmp;

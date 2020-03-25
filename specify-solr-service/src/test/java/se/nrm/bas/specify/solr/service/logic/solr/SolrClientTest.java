@@ -2,8 +2,8 @@ package se.nrm.bas.specify.solr.service.logic.solr;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.URI; 
+import java.net.URISyntaxException;  
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -25,8 +25,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when; 
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner; 
+import org.powermock.core.classloader.annotations.PrepareForTest; 
+import org.powermock.modules.junit4.PowerMockRunner;   
 
 /**
  *
@@ -43,9 +43,7 @@ public class SolrClientTest {
   private SolrClient instance;
    
   @Mock
-  private URIBuilder builder;
-  @Mock
-  private HttpGet httpGet;
+  private URIBuilder builder; 
   private final String utf8 = "UTF-8"; 
   
   @Mock
@@ -71,8 +69,8 @@ public class SolrClientTest {
    * Test of searchSolrData method, of class SolrClient.
    * @throws java.io.IOException
    */
-  @Test
-  public void testSearchSolrData() throws IOException {
+  @Test  
+  public void testSearchSolrDataWith200() throws IOException { 
     System.out.println("searchSolrData");
       
     CloseableHttpResponse response = mock(CloseableHttpResponse.class);    
@@ -102,5 +100,129 @@ public class SolrClientTest {
     String result = instance.searchSolrData(builder, start, maxFetchSize);
     assertEquals(text, result);
   }
+   
+  @Test
+  public void testSearchSolrDataWithHeaderNameNull() throws IOException {
+    System.out.println("searchSolrData");
+      
+    CloseableHttpResponse response = mock(CloseableHttpResponse.class);    
+    StatusLine statusLine = mock(StatusLine.class);
+    when(statusLine.getStatusCode()).thenReturn(200); 
+    when(response.getStatusLine()).thenReturn(statusLine);
+    
+    Header header = mock(Header.class);
+    when(header.getName()).thenReturn(null);
+    
+    HttpEntity httpEntity = mock(HttpEntity.class);
+    when(httpEntity.getContentEncoding()).thenReturn(header);
+    when(response.getEntity()).thenReturn(httpEntity);
+    String text = "test text";
+    PowerMockito.mockStatic(IOUtils.class);  
+     
+    when(IOUtils.toString(any(InputStream.class), any(String.class))).thenReturn(text); 
+     
+    when(client.execute(any(HttpGet.class))).thenReturn(response);
+    PowerMockito.mockStatic(HttpClients.class);  
+    Mockito.when(HttpClients.createDefault()).thenReturn(client);
+     
+    
+    int start = 0;
+    int maxFetchSize = 20;
+    instance = new SolrClient(); 
+    String result = instance.searchSolrData(builder, start, maxFetchSize);
+    assertEquals(text, result);
+  }
   
+  @Test
+  public void testSearchSolrDataWith200HeaderNull() throws IOException {
+    System.out.println("searchSolrData");
+      
+    CloseableHttpResponse response = mock(CloseableHttpResponse.class);    
+    StatusLine statusLine = mock(StatusLine.class);
+    when(statusLine.getStatusCode()).thenReturn(200); 
+    when(response.getStatusLine()).thenReturn(statusLine);
+      
+    HttpEntity httpEntity = mock(HttpEntity.class);
+    when(httpEntity.getContentEncoding()).thenReturn(null);
+    when(response.getEntity()).thenReturn(httpEntity);
+    String text = "test text";
+    PowerMockito.mockStatic(IOUtils.class);  
+     
+    when(IOUtils.toString(any(InputStream.class), any(String.class))).thenReturn(text); 
+     
+    when(client.execute(any(HttpGet.class))).thenReturn(response);
+    PowerMockito.mockStatic(HttpClients.class);  
+    Mockito.when(HttpClients.createDefault()).thenReturn(client);
+     
+    
+    int start = 0;
+    int maxFetchSize = 20;
+    instance = new SolrClient(); 
+    String result = instance.searchSolrData(builder, start, maxFetchSize);
+    assertEquals(text, result);
+  }
+  
+  @Test
+  public void testSearchSolrDataWith400() throws IOException {
+    System.out.println("searchSolrData");
+      
+    CloseableHttpResponse response = mock(CloseableHttpResponse.class);    
+    StatusLine statusLine = mock(StatusLine.class);
+    when(statusLine.getStatusCode()).thenReturn(400); 
+    when(response.getStatusLine()).thenReturn(statusLine);
+     
+    when(client.execute(any(HttpGet.class))).thenReturn(response);
+    PowerMockito.mockStatic(HttpClients.class);  
+    Mockito.when(HttpClients.createDefault()).thenReturn(client);
+      
+  
+    int start = 0;
+    int maxFetchSize = 20;
+    instance = new SolrClient(); 
+    String result = instance.searchSolrData(builder, start, maxFetchSize);
+    assertNull(result);
+  }
+  
+  @Test
+  public void testSearchSolrDataWithURISyntaxException() throws IOException, URISyntaxException {
+    System.out.println("searchSolrData");
+        
+    PowerMockito.mockStatic(HttpClients.class);  
+    Mockito.when(HttpClients.createDefault()).thenReturn(client);
+       
+    Mockito.doThrow(URISyntaxException.class).when(builder).build();
+    int start = 0;
+    int maxFetchSize = 20;
+    instance = new SolrClient(); 
+    String result = instance.searchSolrData(builder, start, maxFetchSize);
+    assertNull(result);
+  }
+  
+  @Test
+  public void testSearchSolrDataWithIOException() throws IOException {
+    System.out.println("searchSolrData");
+      
+    CloseableHttpResponse response = mock(CloseableHttpResponse.class);    
+    StatusLine statusLine = mock(StatusLine.class);
+    when(statusLine.getStatusCode()).thenReturn(200); 
+    when(response.getStatusLine()).thenReturn(statusLine);
+    
+    Header header = mock(Header.class);
+    when(header.getName()).thenReturn(utf8);
+    
+    HttpEntity httpEntity = mock(HttpEntity.class); 
+    
+    Mockito.doThrow(IOException.class).when(httpEntity).getContentEncoding();
+    when(response.getEntity()).thenReturn(httpEntity);
+ 
+    when(client.execute(any(HttpGet.class))).thenReturn(response);
+    PowerMockito.mockStatic(HttpClients.class);  
+    Mockito.when(HttpClients.createDefault()).thenReturn(client);
+      
+    int start = 0;
+    int maxFetchSize = 20;
+    instance = new SolrClient(); 
+    String result = instance.searchSolrData(builder, start, maxFetchSize);
+    assertNull(result);
+  } 
 }

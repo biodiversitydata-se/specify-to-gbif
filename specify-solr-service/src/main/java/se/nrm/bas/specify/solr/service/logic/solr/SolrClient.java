@@ -39,7 +39,7 @@ public class SolrClient {
     
     builder.setParameter(startKey, String.valueOf(start));
     builder.setParameter(rowsKey, String.valueOf(maxFetchSize));
-
+ 
     try {  
       httpget = new HttpGet(builder.build()); 
       response = client.execute(httpget);

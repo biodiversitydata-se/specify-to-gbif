@@ -56,8 +56,7 @@ public class SolrToGbifLogicTest {
   private GbifDao dao;
   
   private URIBuilder mockBuilder;
-  
-  private String institution;
+   
   private Map<String, String> filters;
   private String solrPath;
   private JsonObject json;
@@ -76,8 +75,7 @@ public class SolrToGbifLogicTest {
   }
   
   @Before
-  public void setUp() {
-    institution = "nrm";
+  public void setUp() { 
     filters = new HashMap<>(); 
     solrPath = "http://localhsot:8983/solr";
     
@@ -139,8 +137,8 @@ public class SolrToGbifLogicTest {
     Logs logs = new Logs();
     when(dao.merge(isA(SimpleDwc.class), isA(boolean.class))).thenReturn(dwc);
     when(dao.createLogs(isA(Logs.class), isA(boolean.class))).thenReturn(logs);
-    
-    instance.run(institution, filters); 
+     
+    instance.run("gnm", filters); 
     verify(dao, times(2)).merge(any(SimpleDwc.class), any(boolean.class));  
     verify(dao, times(1)).createLogs(any(Logs.class), any(boolean.class));  
     verify(solr, times(1)).searchSolrData(eq(mockBuilder), any(Integer.class), any(Integer.class));  
@@ -167,7 +165,7 @@ public class SolrToGbifLogicTest {
     when(dao.merge(isA(SimpleDwc.class), isA(boolean.class))).thenReturn(dwc);
     when(dao.createLogs(isA(Logs.class), isA(boolean.class))).thenReturn(logs);
     
-    instance.run(institution, filters); 
+    instance.run("nrm", filters); 
     verify(dao, times(200)).merge(any(SimpleDwc.class), any(boolean.class));  
     verify(dao, times(1)).createLogs(any(Logs.class), any(boolean.class));  
     verify(solr, times(2)).searchSolrData(eq(mockBuilder), any(Integer.class), any(Integer.class));  
