@@ -54,9 +54,9 @@ public class JsonConverter {
 
   public List<SimpleDwc> mapEntities(JsonObject json) {
     array = json.getJsonArray(docs); 
-    try { 
-      ObjectMapper objectMapper = new ObjectMapper();
-      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    try {  
       return objectMapper.readValue(array.toString(), new TypeReference<List<SimpleDwc>>(){}); 
     } catch (JsonProcessingException ex) { 
       log.error(ex.getMessage());

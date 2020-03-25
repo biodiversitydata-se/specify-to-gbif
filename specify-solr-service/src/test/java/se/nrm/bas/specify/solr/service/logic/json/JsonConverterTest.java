@@ -73,9 +73,8 @@ public class JsonConverterTest {
    */
   @Test
   public void testGetSolrDocs() {
-    System.out.println("getSolrDocs");
-    JsonObject json = instance.buildResponseJson(jsonString); 
-    JsonArray expResult = null;
+    System.out.println("getSolrDocs"); 
+    JsonObject json = instance.buildResponseJson(jsonString);   
     JsonArray result = instance.getSolrDocs(json);
     assertEquals(2, result.size()); 
   }
@@ -84,11 +83,23 @@ public class JsonConverterTest {
    * Test of mapEntities method, of class JsonConverter.
    */
   @Test
-  public void testMapEntities() {
-    System.out.println("mapEntities");
+  public void testMapEntities() { 
+    System.out.println("mapEntities");  
     JsonObject json = instance.buildResponseJson(jsonString);  
     List<SimpleDwc> result = instance.mapEntities(json);
     assertEquals(2, result.size()); 
-  }
-  
+  } 
+    
+  @Test
+  public void testMapEntitiesException() {
+    System.out.println("mapEntities");
+    
+    jsonString = "{\"response\": "
+            + "{\"numFound\": 2, \"docs\": [{\"id\": 2, \"type\": \"test\", \"language\": \"en\"},"
+            + "{\"id\": \"6\", \"type\": \"test\", \"language\": {\"id\": 2, \"type\": \"test\", \"language\": \"en\"}}]}}";
+     
+    JsonObject json = instance.buildResponseJson(jsonString);  
+    List<SimpleDwc> result = instance.mapEntities(json);
+    assertNull(result);  
+  }  
 }
