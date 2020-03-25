@@ -73,8 +73,8 @@ public class JsonConverterTest {
    */
   @Test
   public void testGetSolrDocs() {
-    System.out.println("getSolrDocs");
-    JsonObject json = instance.buildResponseJson(jsonString);  
+    System.out.println("getSolrDocs"); 
+    JsonObject json = instance.buildResponseJson(jsonString);   
     JsonArray result = instance.getSolrDocs(json);
     assertEquals(2, result.size()); 
   }
@@ -83,13 +83,13 @@ public class JsonConverterTest {
    * Test of mapEntities method, of class JsonConverter.
    */
   @Test
-  public void testMapEntities() {
-    System.out.println("mapEntities"); 
+  public void testMapEntities() { 
+    System.out.println("mapEntities");  
     JsonObject json = instance.buildResponseJson(jsonString);  
     List<SimpleDwc> result = instance.mapEntities(json);
     assertEquals(2, result.size()); 
-  }
-   
+  } 
+    
   @Test
   public void testMapEntitiesException() {
     System.out.println("mapEntities");
@@ -100,6 +100,6 @@ public class JsonConverterTest {
      
     JsonObject json = instance.buildResponseJson(jsonString);  
     List<SimpleDwc> result = instance.mapEntities(json);
-    assertNull(result); 
-  } 
+    assertNull(result);  
+  }  
 }

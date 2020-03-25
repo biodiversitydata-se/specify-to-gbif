@@ -1,8 +1,8 @@
 package se.nrm.bas.specify.solr.service.logic.solr;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI; 
+import java.io.InputStream; 
+import java.net.URI;
 import java.net.URISyntaxException;  
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
@@ -24,8 +24,8 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when; 
 import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest; 
+import org.powermock.core.classloader.annotations.PowerMockIgnore; 
+import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;   
 
 /**
@@ -42,8 +42,8 @@ public class SolrClientTest {
   
   private SolrClient instance;
    
-  @Mock
-  private URIBuilder builder; 
+  @Mock 
+  private URIBuilder builder;  
   private final String utf8 = "UTF-8"; 
   
   @Mock
@@ -68,7 +68,7 @@ public class SolrClientTest {
   /**
    * Test of searchSolrData method, of class SolrClient.
    * @throws java.io.IOException
-   */
+   */ 
   @Test  
   public void testSearchSolrDataWith200() throws IOException { 
     System.out.println("searchSolrData");
@@ -196,9 +196,9 @@ public class SolrClientTest {
     instance = new SolrClient(); 
     String result = instance.searchSolrData(builder, start, maxFetchSize);
     assertNull(result);
-  }
+  } 
   
-  @Test
+  @Test 
   public void testSearchSolrDataWithIOException() throws IOException {
     System.out.println("searchSolrData");
       
@@ -223,6 +223,6 @@ public class SolrClientTest {
     int maxFetchSize = 20;
     instance = new SolrClient(); 
     String result = instance.searchSolrData(builder, start, maxFetchSize);
-    assertNull(result);
-  } 
+    assertNull(result); 
+  }  
 }
