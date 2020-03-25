@@ -48,25 +48,25 @@ public class Util {
    
   public Map<String, String> buildFilterMap(String collectionCode, String fromDate, String toDate) { 
     Map<String, String> map = new HashMap<>();
-    if(collectionCode != null && !collectionCode.isEmpty()) {
+    if(collectionCode != null && !collectionCode.trim().isEmpty()) {
       map.put(collectionCodeKey, collectionCode);
     }
     
-    if((fromDate == null || fromDate.isEmpty())
-            && (toDate == null || toDate.isEmpty())) {
+    if((fromDate == null || fromDate.trim().isEmpty())
+            && (toDate == null || toDate.trim().isEmpty())) {
       return map;
     }
     
     dateSb = new StringBuilder();
     dateSb.append(startSquareBracket);
-    if(fromDate != null && !fromDate.isEmpty()) {
+    if(fromDate != null && !fromDate.trim().isEmpty()) {
       dateSb.append(fromDate);
       dateSb.append(timeZoon);
     } else {
       dateSb.append(wildCard);
     }
     dateSb.append(to);
-    if(toDate != null && !toDate.isEmpty()) {
+    if(toDate != null && !toDate.trim().isEmpty()) {
       dateSb.append(toDate);
       dateSb.append(timeZoon);
     } else {
@@ -102,7 +102,6 @@ public class Util {
     sb.append(solr);
     sb.append(core);
     sb.append(select);
-    queryBuilder = new StringBuilder(); 
     try {  
       URIBuilder builder = new URIBuilder(new URI(solrPath));
       builder.setPath(sb.toString().trim()); 
