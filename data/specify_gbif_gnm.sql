@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `specify_gbif_gnm` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `specify_gbif_gnm`;
 -- MySQL dump 10.13  Distrib 8.0.19, for macos10.15 (x86_64)
 --
 -- Host: localhost    Database: specify_gbif_gnm
@@ -29,17 +27,17 @@ CREATE TABLE `logs` (
   `timestamp` datetime NOT NULL,
   `totalRecords` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `simpleDwcNrm`
+-- Table structure for table `simpleDwc`
 --
 
-DROP TABLE IF EXISTS `simpleDwcNrm`;
+DROP TABLE IF EXISTS `simpleDwc`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `simpleDwcNrm` (
+CREATE TABLE `simpleDwc` (
   `id` varchar(128) NOT NULL,
   `type` varchar(45) DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
@@ -73,7 +71,7 @@ CREATE TABLE `simpleDwcNrm` (
   `behavior` varchar(45) DEFAULT NULL,
   `establishmentMeans` varchar(45) DEFAULT NULL,
   `occurrenceStatus` varchar(45) DEFAULT NULL,
-  `preparations` varchar(64) DEFAULT NULL,
+  `preparations` varchar(128) DEFAULT NULL,
   `disposition` varchar(45) DEFAULT NULL,
   `associatedMedia` varchar(45) DEFAULT NULL,
   `associatedReferences` varchar(45) DEFAULT NULL,
@@ -87,7 +85,7 @@ CREATE TABLE `simpleDwcNrm` (
   `associatedOccurrences` varchar(45) DEFAULT NULL,
   `associatedOrganisms` varchar(45) DEFAULT NULL,
   `previousIdentifications` varchar(45) DEFAULT NULL,
-  `organismRemarks` varchar(45) DEFAULT NULL,
+  `organismRemarks` text,
   `materialSampleID` varchar(45) DEFAULT NULL,
   `eventID` varchar(45) DEFAULT NULL,
   `parentEventID` varchar(45) DEFAULT NULL,
@@ -106,7 +104,7 @@ CREATE TABLE `simpleDwcNrm` (
   `sampleSizeValue` varchar(45) DEFAULT NULL,
   `sampleSizeUnit` varchar(45) DEFAULT NULL,
   `samplingEffort` varchar(45) DEFAULT NULL,
-  `fieldNotes` varchar(45) DEFAULT NULL,
+  `fieldNotes` varchar(128) DEFAULT NULL,
   `locationID` varchar(45) DEFAULT NULL,
   `higherGeographyID` varchar(45) DEFAULT NULL,
   `higherGeography` varchar(255) DEFAULT NULL,
@@ -132,14 +130,14 @@ CREATE TABLE `simpleDwcNrm` (
   `locationAccordingTo` varchar(45) DEFAULT NULL,
   `locationRemarks` text,
   `decimalLatitude` decimal(12,10) DEFAULT NULL,
-  `decimalLongitude` decimal(12,10) DEFAULT NULL,
+  `decimalLongitude` decimal(13,10) DEFAULT NULL,
   `geodeticDatum` varchar(50) DEFAULT NULL,
   `coordinateUncertaintyInMeters` double DEFAULT NULL,
   `coordinatePrecision` varchar(45) DEFAULT NULL,
   `pointRadiusSpatialFit` varchar(45) DEFAULT NULL,
-  `verbatimCoordinates` varchar(45) DEFAULT NULL,
-  `verbatimLatitude` varchar(45) DEFAULT NULL,
-  `verbatimLongitude` varchar(45) DEFAULT NULL,
+  `verbatimCoordinates` varchar(64) DEFAULT NULL,
+  `verbatimLatitude` varchar(64) DEFAULT NULL,
+  `verbatimLongitude` varchar(64) DEFAULT NULL,
   `verbatimCoordinateSystem` varchar(45) DEFAULT NULL,
   `verbatimSRS` varchar(45) DEFAULT NULL,
   `footprintWKT` varchar(45) DEFAULT NULL,
@@ -205,12 +203,12 @@ CREATE TABLE `simpleDwcNrm` (
   `taxonRank` varchar(45) DEFAULT NULL,
   `verbatimTaxonRank` varchar(45) DEFAULT NULL,
   `scientificNameAuthorship` varchar(45) DEFAULT NULL,
-  `vernacularName` varchar(255) DEFAULT NULL,
+  `vernacularName` text,
   `nomenclaturalCode` varchar(45) DEFAULT NULL,
   `taxonomicStatus` varchar(45) DEFAULT NULL,
   `nomenclaturalStatus` varchar(45) DEFAULT NULL,
   `taxonRemarks` text,
-  `guid` varchar(128) NOT NULL,
+  `guid` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -225,4 +223,4 @@ CREATE TABLE `simpleDwcNrm` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-18  7:14:42
+-- Dump completed on 2020-05-28 13:26:37
