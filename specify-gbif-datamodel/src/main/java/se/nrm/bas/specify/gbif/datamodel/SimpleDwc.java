@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -36,7 +36,7 @@ public class SimpleDwc implements Serializable {
   @Id
 //  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Basic(optional = false)
-  @Column(name = "id") 
+  @Column(name = "id")
   private String id;
    
   @Size(max = 45)
@@ -170,7 +170,7 @@ public class SimpleDwc implements Serializable {
   @Column(name = "occurrenceStatus")
   private String occurrenceStatus;
   
-  @Size(max = 64)
+  @Size(max = 128)
   @Column(name = "preparations")
   private String preparations;
   
@@ -226,8 +226,9 @@ public class SimpleDwc implements Serializable {
   @Size(max = 45)
   @Column(name = "previousIdentifications")
   private String previousIdentifications;
-  
-  @Size(max = 45)
+   
+  @Lob
+  @Size(max = 65535)
   @Column(name = "organismRemarks")
   private String organismRemarks;
   
@@ -270,9 +271,11 @@ public class SimpleDwc implements Serializable {
   
   @Column(name = "day")
   private Integer day;
+  
   @Size(max = 50)
   @Column(name = "verbatimEventDate")
   private String verbatimEventDate;
+  
   @Lob
   @Size(max = 65535)
   @Column(name = "eventRemarks")
@@ -298,7 +301,7 @@ public class SimpleDwc implements Serializable {
   @Column(name = "samplingEffort")
   private String samplingEffort;
   
-  @Size(max = 45)
+  @Size(max = 128)
   @Column(name = "fieldNotes")
   private String fieldNotes;
   
@@ -404,7 +407,7 @@ public class SimpleDwc implements Serializable {
   @Column(name = "decimalLatitude")
   private BigDecimal decimalLatitude;
   
-  @Column(name = "decimalLongitude")
+  @Column(name = "decimalLongitude")  
   private BigDecimal decimalLongitude;
   
   @Size(max = 50)
@@ -422,15 +425,15 @@ public class SimpleDwc implements Serializable {
   @Column(name = "pointRadiusSpatialFit")
   private String pointRadiusSpatialFit;
   
-  @Size(max = 45)
+  @Size(max = 64)
   @Column(name = "verbatimCoordinates")
   private String verbatimCoordinates;
   
-  @Size(max = 45)
+  @Size(max = 64)
   @Column(name = "verbatimLatitude")
   private String verbatimLatitude;
   
-  @Size(max = 45)
+  @Size(max = 64)
   @Column(name = "verbatimLongitude")
   private String verbatimLongitude;
   
@@ -667,13 +670,11 @@ public class SimpleDwc implements Serializable {
   @Size(max = 255)
   @Column(name = "family")
   private String family;
-  
-  
+   
   @Size(max = 255)
   @Column(name = "genus")
   private String genus;
-  
-  
+   
   @Size(max = 255)
   @Column(name = "subgenus")
   private String subgenus;
@@ -698,13 +699,15 @@ public class SimpleDwc implements Serializable {
   @Column(name = "scientificNameAuthorship")
   private String scientificNameAuthorship;
   
-  @Size(max = 255)
+  @Lob
+  @Size(max = 65535)
   @Column(name = "vernacularName")
   private String vernacularName;
   
   @Size(max = 45)
   @Column(name = "nomenclaturalCode")
   private String nomenclaturalCode;
+  
   @Size(max = 45)
   @Column(name = "taxonomicStatus")
   private String taxonomicStatus;
@@ -718,8 +721,8 @@ public class SimpleDwc implements Serializable {
   @Column(name = "taxonRemarks")
   private String taxonRemarks;
   
-  @Basic(optional = false)
-  @NotNull
+//  @Basic(optional = false)
+//  @NotNull
   @Size(min = 1, max = 128)
   @Column(name = "guid")
   private String guid;
