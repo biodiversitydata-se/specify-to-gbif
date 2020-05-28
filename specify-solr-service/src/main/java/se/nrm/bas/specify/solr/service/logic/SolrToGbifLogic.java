@@ -56,16 +56,18 @@ public class SolrToGbifLogic {
     String result = solr.searchSolrData(builder, 0, maxFetchSize);   
     JsonObject json = JsonConverter.getInstance().buildResponseJson(result);   
     int numFound = JsonConverter.getInstance().getTotalNumberFound(json);
+    log.info(" numFound : {}", numFound);
     List<SimpleDwc> beans = JsonConverter.getInstance().mapEntities(json); 
-    saveEntities(beans, isNrm);
+    dao.merge(beans, isNrm);
+//    saveEntities(beans, isNrm);
     
     if (numFound > maxFetchSize) {
-      for (int i = maxFetchSize + 1; i < numFound; i += maxFetchSize) {
+      for (int i = maxFetchSize; i < numFound; i += maxFetchSize) {
         result = solr.searchSolrData(builder, i, maxFetchSize);
         json = JsonConverter.getInstance().buildResponseJson(result); 
         beans = JsonConverter.getInstance().mapEntities(json); 
-        
-        saveEntities(beans, isNrm);
+        dao.merge(beans, isNrm);
+//        saveEntities(beans, isNrm);
       }
     }
     saveLogs(numFound, isNrm); 
@@ -73,7 +75,7 @@ public class SolrToGbifLogic {
    
   private void saveEntities(List<SimpleDwc> beans, boolean isNrm) {
      beans.stream()
-            .forEach(bean -> {
+            .forEach(bean -> { 
               dao.merge(bean, isNrm);
             });
   }

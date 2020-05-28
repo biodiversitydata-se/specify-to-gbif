@@ -17,7 +17,10 @@
       <property name="eclipselink.persistence-context.close-on-commit" value="true"/>
       <property name="eclipselink.persistence-context.flush-mode" value="commit"/>
       <property name="eclipselink.persistence-context.persist-on-commit" value="true"/>
-      <property name="eclipselink.weaving" value="true"/>
+      <!--<property name="eclipselink.weaving" value="true"/>-->
+      
+      
+      <property name="hibernate.jdbc.batch_size" value="100"/>
     </properties>
   </persistence-unit>
   
@@ -35,7 +38,11 @@
       <property name="eclipselink.persistence-context.close-on-commit" value="true"/>
       <property name="eclipselink.persistence-context.flush-mode" value="commit"/>
       <property name="eclipselink.persistence-context.persist-on-commit" value="true"/>
-      <property name="eclipselink.weaving" value="true"/>
+      <!--<property name="eclipselink.weaving" value="true"/>-->
+      
+      
+      
+      <property name="hibernate.jdbc.batch_size" value="100"/>
     </properties>
   </persistence-unit>
 </persistence>

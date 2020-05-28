@@ -139,7 +139,7 @@ public class SolrToGbifLogicTest {
     when(dao.createLogs(isA(Logs.class), isA(boolean.class))).thenReturn(logs);
      
     instance.run("gnm", filters); 
-    verify(dao, times(2)).merge(any(SimpleDwc.class), any(boolean.class));  
+    verify(dao, times(1)).merge(any(List.class), any(boolean.class));  
     verify(dao, times(1)).createLogs(any(Logs.class), any(boolean.class));  
     verify(solr, times(1)).searchSolrData(eq(mockBuilder), any(Integer.class), any(Integer.class));  
     verify(properties, times(1)).getSolrPath();  
@@ -166,7 +166,8 @@ public class SolrToGbifLogicTest {
     when(dao.createLogs(isA(Logs.class), isA(boolean.class))).thenReturn(logs);
     
     instance.run("nrm", filters); 
-    verify(dao, times(200)).merge(any(SimpleDwc.class), any(boolean.class));  
+ 
+    verify(dao, times(2)).merge(any(List.class), any(boolean.class));  
     verify(dao, times(1)).createLogs(any(Logs.class), any(boolean.class));  
     verify(solr, times(2)).searchSolrData(eq(mockBuilder), any(Integer.class), any(Integer.class));  
     verify(properties, times(1)).getSolrPath();  
