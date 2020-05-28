@@ -5,11 +5,17 @@ services:
   api:
     image: dina/specify-gbif:v0.1
     container_name: api
+    environment:
+      - VIRTUAL_HOST=local-specifygbif.nrm.se
     restart: always
     volumes:
       - ./project-initdata.yml:/usr/src/myapp/project-initdata.yml
-    extra_hosts:
-      - "naturarv.nrm.se:193.10.57.89"
+      - ./logs:/usr/src/myapp/logs
+    # extra_hosts:
+    #   - "naturarv.nrm.se:193.10.57.89"
+    external_links:
+      - solr:solr
+      - mysql:mysql
     networks:
       - default
 
