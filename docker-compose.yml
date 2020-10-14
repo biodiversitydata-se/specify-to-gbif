@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   api:
-    image: dina/specify-gbif:v0.1
+    image: dina/specify-gbif:v0.2
     container_name: api
     environment:
       - VIRTUAL_HOST=local-specifygbif.nrm.se
