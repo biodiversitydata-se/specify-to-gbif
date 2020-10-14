@@ -13,3 +13,7 @@ certs/*.key
 /specify-solr-service/nbproject/
 
 notes
+logs/*
+
+
+
