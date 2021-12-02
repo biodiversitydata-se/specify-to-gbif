@@ -27,7 +27,7 @@ CREATE TABLE `logs` (
   `timestamp` datetime NOT NULL,
   `totalRecords` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,7 +202,7 @@ CREATE TABLE `simpleDwc` (
   `infraspecificEpithet` varchar(255) DEFAULT NULL,
   `taxonRank` varchar(45) DEFAULT NULL,
   `verbatimTaxonRank` varchar(45) DEFAULT NULL,
-  `scientificNameAuthorship` varchar(45) DEFAULT NULL,
+  `scientificNameAuthorship` varchar(255) DEFAULT NULL,
   `vernacularName` text,
   `nomenclaturalCode` varchar(45) DEFAULT NULL,
   `taxonomicStatus` varchar(45) DEFAULT NULL,
@@ -223,4 +223,4 @@ CREATE TABLE `simpleDwc` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-28 13:26:37
+-- Dump completed on 2021-12-02  9:49:18

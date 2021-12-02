@@ -695,7 +695,7 @@ public class SimpleDwc implements Serializable {
   @Column(name = "verbatimTaxonRank")
   private String verbatimTaxonRank;
   
-  @Size(max = 45)
+  @Size(max = 255)
   @Column(name = "scientificNameAuthorship")
   private String scientificNameAuthorship;
   
