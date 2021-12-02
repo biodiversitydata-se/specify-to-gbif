@@ -7,7 +7,7 @@
   <parent>
     <artifactId>specify-to-gbif</artifactId>
     <groupId>se.nrm.bas</groupId>
-    <version>0.2</version>
+    <version>0.3</version>
   </parent>
 
   <groupId>se.nrm.bas</groupId>

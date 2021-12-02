@@ -8,7 +8,7 @@
   <parent>
     <groupId>se.nrm.bas</groupId>
     <artifactId>specify-to-gbif</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
   </parent>
   
   <artifactId>specify-gbif-datamodel</artifactId>
