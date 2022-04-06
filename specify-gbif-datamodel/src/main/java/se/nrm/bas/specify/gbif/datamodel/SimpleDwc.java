@@ -170,7 +170,8 @@ public class SimpleDwc implements Serializable {
   @Column(name = "occurrenceStatus")
   private String occurrenceStatus;
   
-  @Size(max = 128)
+  @Lob
+  @Size(max = 65535)
   @Column(name = "preparations")
   private String preparations;
   
