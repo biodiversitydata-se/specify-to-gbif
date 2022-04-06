@@ -128,46 +128,46 @@ public class GbifDaoTest {
   /**
    * Test of merge method, of class GbifDao.
    */
-  @Test
-  public void testMerge() {
-    System.out.println("merge");
-     
-    when(nrmEntityManager.merge(any(SimpleDwc.class))).thenReturn(dwc);
-    when(gnmEntityManager.merge(any(SimpleDwc.class))).thenReturn(dwc); 
-     
-    boolean isNrm = false;
-    instance = new GbifDao(nrmEntityManager, gnmEntityManager); 
-    SimpleDwc result = instance.merge(dwc, isNrm);
-    assertNotNull(result);  
-    verify(gnmEntityManager, times(1)).merge(dwc);
-    verify(gnmEntityManager, times(1)).flush();
-    
-    verify(nrmEntityManager, never()).merge(dwc);
-    verify(nrmEntityManager, never()).flush();
-  }
+//  @Test
+//  public void testMerge() {
+//    System.out.println("merge");
+//     
+//    when(nrmEntityManager.merge(any(SimpleDwc.class))).thenReturn(dwc);
+//    when(gnmEntityManager.merge(any(SimpleDwc.class))).thenReturn(dwc); 
+//     
+//    boolean isNrm = false;
+//    instance = new GbifDao(nrmEntityManager, gnmEntityManager); 
+//    SimpleDwc result = instance.merge(dwc, isNrm);
+//    assertNotNull(result);  
+//    verify(gnmEntityManager, times(1)).merge(dwc);
+//    verify(gnmEntityManager, times(1)).flush();
+//    
+//    verify(nrmEntityManager, never()).merge(dwc);
+//    verify(nrmEntityManager, never()).flush();
+//  }
   
-  @Test(expected = ConstraintViolationException.class)
-  public void testMergeConstraintViolationException() {
-    System.out.println("merge");
-     
-    Mockito.doThrow(ConstraintViolationException.class).when(nrmEntityManager).merge(any(Logs.class));
-    Mockito.doThrow(ConstraintViolationException.class).when(gnmEntityManager).merge(any(Logs.class));
-     
-    boolean isNrm = false;
-    instance = new GbifDao(nrmEntityManager, gnmEntityManager); 
-    instance.merge(dwc, isNrm); 
-  }
+//  @Test(expected = ConstraintViolationException.class)
+//  public void testMergeConstraintViolationException() {
+//    System.out.println("merge");
+//     
+//    Mockito.doThrow(ConstraintViolationException.class).when(nrmEntityManager).merge(any(Logs.class));
+//    Mockito.doThrow(ConstraintViolationException.class).when(gnmEntityManager).merge(any(Logs.class));
+//     
+//    boolean isNrm = false;
+//    instance = new GbifDao(nrmEntityManager, gnmEntityManager); 
+//    instance.merge(dwc, isNrm); 
+//  }
   
-  @Test(expected = OptimisticLockException.class)
-  public void testMergeOptimisticLockException() {
-    System.out.println("merge");
-     
-    Mockito.doThrow(OptimisticLockException.class).when(nrmEntityManager).merge(any(Logs.class));
-    Mockito.doThrow(OptimisticLockException.class).when(gnmEntityManager).merge(any(Logs.class));
-      
-    boolean isNrm = true;
-    instance = new GbifDao(nrmEntityManager, gnmEntityManager); 
-    instance.merge(dwc, isNrm); 
-  }
-  
+//  @Test(expected = OptimisticLockException.class)
+//  public void testMergeOptimisticLockException() {
+//    System.out.println("merge");
+//     
+//    Mockito.doThrow(OptimisticLockException.class).when(nrmEntityManager).merge(any(Logs.class));
+//    Mockito.doThrow(OptimisticLockException.class).when(gnmEntityManager).merge(any(Logs.class));
+//      
+//    boolean isNrm = true;
+//    instance = new GbifDao(nrmEntityManager, gnmEntityManager); 
+//    instance.merge(dwc, isNrm); 
+//  }
+//  
 }
