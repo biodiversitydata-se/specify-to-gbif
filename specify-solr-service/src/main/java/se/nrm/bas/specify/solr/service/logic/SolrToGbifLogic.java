@@ -30,7 +30,7 @@ public class SolrToGbifLogic {
   @EJB
   private GbifDao dao;
   
-  private final int maxFetchSize = 100; 
+  private final int maxFetchSize = 2000; 
   private final String nrm = "nrm"; 
   private final String nrmCore = "nrm_index";
   private final String gnmCore = "gnm_index";
@@ -53,32 +53,35 @@ public class SolrToGbifLogic {
     String core = isNrm ? nrmCore : gnmCore; 
     URIBuilder builder = Util.getInstance().getUriBuilder(properties.getSolrPath(), core, searchQuery); 
      
+    log.info("start fetch from solr");
     String result = solr.searchSolrData(builder, 0, maxFetchSize);   
-    JsonObject json = JsonConverter.getInstance().buildResponseJson(result);   
+    JsonObject json = JsonConverter.getInstance().buildResponseJson(result);
     int numFound = JsonConverter.getInstance().getTotalNumberFound(json);
     log.info(" numFound : {}", numFound);
-    List<SimpleDwc> beans = JsonConverter.getInstance().mapEntities(json); 
+    List<SimpleDwc> beans = JsonConverter.getInstance().mapEntities(json);
+    
     dao.merge(beans, isNrm);
 //    saveEntities(beans, isNrm);
-    
+
     if (numFound > maxFetchSize) {
       for (int i = maxFetchSize; i < numFound; i += maxFetchSize) {
-        result = solr.searchSolrData(builder, i, maxFetchSize);
-        json = JsonConverter.getInstance().buildResponseJson(result); 
-        beans = JsonConverter.getInstance().mapEntities(json); 
+        log.info("start fetch from solr");
+        result = solr.searchSolrData(builder, i, maxFetchSize); 
+        json = JsonConverter.getInstance().buildResponseJson(result);
+        beans = JsonConverter.getInstance().mapEntities(json);
         dao.merge(beans, isNrm);
 //        saveEntities(beans, isNrm);
       }
     }
-    saveLogs(numFound, isNrm); 
+    saveLogs(numFound, isNrm);
   }
-   
-  private void saveEntities(List<SimpleDwc> beans, boolean isNrm) {
-     beans.stream()
-            .forEach(bean -> { 
-              dao.merge(bean, isNrm);
-            });
-  }
+
+//  private void saveEntities(List<SimpleDwc> beans, boolean isNrm) {
+//     beans.stream()
+//            .forEach(bean -> { 
+//              dao.merge(bean, isNrm);
+//            });
+//  }
   
   private void saveLogs(int numFound, boolean isNrm) {
     Logs logs = new Logs();

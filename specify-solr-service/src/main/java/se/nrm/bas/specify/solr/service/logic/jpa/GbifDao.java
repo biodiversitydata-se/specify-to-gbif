@@ -8,7 +8,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+//import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import se.nrm.bas.specify.gbif.datamodel.Logs;
@@ -62,43 +62,43 @@ public class GbifDao implements Serializable {
     log.info("merge : {}", entities.size());
 
     entityManager = getEntityManager(isNrm);
-
-    entities.stream()
-            .forEach(entity -> {
-              SimpleDwc tmp = entity; 
-              try {
-                tmp = entityManager.merge(entity);
-                entityManager.flush();                              // this one used for throwing OptimisticLockException if method called with web service 
-              } catch (OptimisticLockException | ConstraintViolationException e) {
-                log.error(e.getMessage()); 
-                throw e;
-              } 
-            }); 
+    
+    for (int i = 0; i < entities.size(); i++) {
+      SimpleDwc entity = entities.get(i);   
+      try {
+        entityManager.merge(entity);
+      } catch (OptimisticLockException | ConstraintViolationException e) {
+        log.error(e.getMessage());
+        throw e;
+      }
+    }
+    entityManager.flush();
+    entityManager.clear(); 
   }
 
   
   
 //  @Transactional
-  public SimpleDwc merge(SimpleDwc entity, boolean isNrm)
-          throws OptimisticLockException, ConstraintViolationException{
-    log.info("create(T) : {}", entity);
-     
-    if(entity.getId().equals("0a199703-685a-4558-8804-f95e4ec1708a") ) {
-      log.info("find... {} -- {}", entity.getDecimalLatitude(), entity.getDecimalLongitude());
-    }
-    entityManager = getEntityManager(isNrm); 
-    SimpleDwc tmp = entity;
-
-    try {
-      tmp = entityManager.merge(entity);
-      entityManager.flush();                              // this one used for throwing OptimisticLockException if method called with web service 
-    } catch (OptimisticLockException | ConstraintViolationException e) {
-      log.error(e.getMessage());
-      System.out.println("throw...");
-      throw e;
-    } 
-    return tmp;
-  }
+//  public SimpleDwc merge(SimpleDwc entity, boolean isNrm)
+//          throws OptimisticLockException, ConstraintViolationException{
+//    log.info("create(T) : {}", entity);
+//     
+////    if(entity.getId().equals("0a199703-685a-4558-8804-f95e4ec1708a") ) {
+////      log.info("find... {} -- {}", entity.getDecimalLatitude(), entity.getDecimalLongitude());
+////    }
+//    entityManager = getEntityManager(isNrm); 
+//    SimpleDwc tmp = entity;
+//
+//    try {
+//      tmp = entityManager.merge(entity);
+//      entityManager.flush();                              // this one used for throwing OptimisticLockException if method called with web service 
+//    } catch (OptimisticLockException | ConstraintViolationException e) {
+//      log.error(e.getMessage());
+////      System.out.println("throw...");
+//      throw e;
+//    } 
+//    return tmp;
+//  }
 
   private EntityManager getEntityManager(boolean isNrm) {
     return isNrm ? nrmEntityManager : gnmEntityManager;
