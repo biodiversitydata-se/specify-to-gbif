@@ -27,7 +27,7 @@ CREATE TABLE `logs` (
   `timestamp` datetime NOT NULL,
   `totalRecords` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `simpleDwc` (
   `behavior` varchar(45) DEFAULT NULL,
   `establishmentMeans` varchar(45) DEFAULT NULL,
   `occurrenceStatus` varchar(45) DEFAULT NULL,
-  `preparations` varchar(128) DEFAULT NULL,
+  `preparations` text,
   `disposition` varchar(45) DEFAULT NULL,
   `associatedMedia` varchar(45) DEFAULT NULL,
   `associatedReferences` varchar(45) DEFAULT NULL,
@@ -223,4 +223,4 @@ CREATE TABLE `simpleDwc` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-02  9:38:09
+-- Dump completed on 2022-04-06 14:21:08
