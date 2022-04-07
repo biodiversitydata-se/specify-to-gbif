@@ -30,8 +30,9 @@ public class GbifDao implements Serializable {
   private EntityManager gnmEntityManager;
   
   private EntityManager entityManager;
-   
   
+  private final int batchSize = 30;
+    
   public GbifDao() { 
   }
   
@@ -64,6 +65,11 @@ public class GbifDao implements Serializable {
     entityManager = getEntityManager(isNrm);
     
     for (int i = 0; i < entities.size(); i++) {
+      if (i > 0 && i % batchSize == 0) {
+            entityManager.flush();
+            entityManager.clear();
+      } 
+        
       SimpleDwc entity = entities.get(i);   
       try {
         entityManager.merge(entity);
@@ -71,9 +77,7 @@ public class GbifDao implements Serializable {
         log.error(e.getMessage());
         throw e;
       }
-    }
-    entityManager.flush();
-    entityManager.clear(); 
+    } 
   }
 
   
